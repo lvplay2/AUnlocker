@@ -13,7 +13,13 @@ public static class IncreaseWithoutLimits_NumberOption_Increase_Prefix
     public static bool Prefix(NumberOption __instance)
     {
         if (!AUnlocker.NoOptionsLimits.Value) return true;
-        __instance.Value +=  __instance.Increment;
+
+        float multi = 1f;
+        if (Input.GetKey(KeyCode.LeftShift)) multi = 0.05f;
+        else if (Input.GetKey(KeyCode.LeftControl)) multi = 0.1f;
+        else if (Input.GetKey(KeyCode.LeftAlt)) multi = 0.25f;
+        
+        __instance.Value += multi;
         __instance.UpdateValue();
         __instance.OnValueChanged.Invoke(__instance);
         __instance.AdjustButtonsActiveState();
@@ -32,7 +38,13 @@ public static class DecreaseWithoutLimits_NumberOption_Decrease_Prefix
     public static bool Prefix(NumberOption __instance)
     {
         if (!AUnlocker.NoOptionsLimits.Value) return true;
-        __instance.Value -=  __instance.Increment;
+
+        float multi = 1f;
+        if (Input.GetKey(KeyCode.LeftShift)) multi = 0.05f;
+        else if (Input.GetKey(KeyCode.LeftControl)) multi = 0.1f;
+        else if (Input.GetKey(KeyCode.LeftAlt)) multi = 0.25f;
+        
+        __instance.Value -= multi;
         __instance.UpdateValue();
         __instance.OnValueChanged.Invoke(__instance);
         __instance.AdjustButtonsActiveState();
