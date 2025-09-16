@@ -37,6 +37,7 @@ public partial class AUnlocker : BasePlugin
     public static ConfigEntry<string> AprilFoolsMode;
     public static ConfigEntry<bool> MoreLobbyInfo;
     public static ConfigEntry<bool> ShowTaskPanelInMeetings;
+    public static ConfigEntry<int> StartCountdownTimer;
 
     // Unsafe
     public static ConfigEntry<bool> AllowAllCharacters;
@@ -68,6 +69,7 @@ public partial class AUnlocker : BasePlugin
         AprilFoolsMode = Config.Bind("Other", "AprilFoolsMode", "Disabled", "Enable April Fools Mode (only client-side)\n\nOptions: Disabled, Horse, Seeker, Long, LongHorse");
         MoreLobbyInfo = Config.Bind("Other", "MoreLobbyInfo", false, "Show more information when finding a game: host name (e.g. Astral), lobby code (e.g. KLHCEG), host platform (e.g. Epic), and lobby age in minutes (e.g. 4:20)");
         ShowTaskPanelInMeetings = Config.Bind("Other", "ShowTaskPanelInMeetings", false, "Show the task panel (contains a list of your tasks) during meetings");
+        StartCountdownTimer = Config.Bind("Other", "StartCountdownTimer", 5, "Set the start countdown timer to this value");
         // Unsafe
         AllowAllCharacters = Config.Bind("Unsafe", "AllowAllCharacters", false, "THESE ARE UNSAFE AND CAN GET YOU KICKED BY ANTI-CHEAT, USE WITH CAUTION\n\nBe able to send any character in chat");
         NoCharacterLimit = Config.Bind("Unsafe", "NoCharacterLimit", false, "No character limit in chat");
