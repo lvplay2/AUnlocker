@@ -1,4 +1,4 @@
-using AmongUs.Data.Player;
+using AmongUs.Data;
 using HarmonyLib;
 
 namespace AUnlocker;
