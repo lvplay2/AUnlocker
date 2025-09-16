@@ -165,13 +165,15 @@ public static class ShowTaskPanelInMeetings_HudManager_SetHudActive
 
 [HarmonyPatch(typeof(ControllerManager), nameof(ControllerManager.Update))]
 public static class StartCountdownTimer_ControllerManager_Update_Postfix
-{  
+{
+    public static bool IsCountDown => GameStartManager.Instance != null && GameStartManager.Instance.startState == (GameStartManager.StartingStates)1;
+    
     /// <summary>
     /// Set the target start countdown timer based on the config setting.
     /// </summary>
     public static void Postfix()
     {
-        if (GameStates.IsCountDown && GameStartManager.Instance != null)
+        if (IsCountDown)
         {
             GameStartManager.Instance.countDownTimer = AUnlocker.StartCountdownTimer.Value;
         }
