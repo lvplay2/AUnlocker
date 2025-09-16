@@ -147,6 +147,7 @@ public static class AccountLevel_PlayerStatsData_Level_Postfix
     [HarmonyPostfix]
     public static void Postfix(ref uint __result)
     {
-        __result = (uint)AUnlocker.AccountLevel.Value;
+        if (AUnlocker.AccountLevel != null)
+            __result = (uint)AUnlocker.AccountLevel.Value;
     }
 }
