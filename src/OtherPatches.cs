@@ -163,28 +163,17 @@ public static class ShowTaskPanelInMeetings_HudManager_SetHudActive
     }
 }
 
-[HarmonyPatch(typeof(ControllerManager), nameof(ControllerManager.Update))]
-public static class StartCountdownTimer_ControllerManager_Update_Postfix
+[HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.ReallyBegin))]
+public static class StartCountdownTimer_GameStartManager_ReallyBegin_Postfix
 {
-    private static bool hasExecuted = false;
-    public static bool IsCountDown => GameStartManager.Instance != null && GameStartManager.Instance.startState == (GameStartManager.StartingStates)1;
-    
     /// <summary>
     /// Set the target start countdown timer based on the config setting.
     /// </summary>
-    public static void Postfix()
+    public static void Postfix(GameStartManager __instance, bool neverShow)
     {
-        if (IsCountDown)
+        if (InnerNetClient.AmHost())
         {
-            if (!hasExecuted)
-            {
-                GameStartManager.Instance.countDownTimer = AUnlocker.StartCountdownTimer.Value;
-                hasExecuted = true;
-            }
-        }
-        else
-        {
-            hasExecuted = false;
+            __instance.countDownTimer = AUnlocker.StartCountdownTimer.Value + 0.0001f;
         }
     }
 }
