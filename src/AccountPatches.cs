@@ -137,23 +137,3 @@ public static class RemoveDisconnectPenalty_PlayerBanData_BanPoints_Prefix
         return false;
     }
 }
-
-[HarmonyPatch(typeof(PlayerStatsData))]
-public static class AccountLevel_PlayerStatsData_Level_Postfix
-{
-    public static uint parsedLevel;
-    
-    /// <summary>
-    /// Set the target account's level based on the config setting.
-    /// </summary>
-    [HarmonyPatch("get_Level")]
-    [HarmonyPostfix]
-    public static void Postfix()
-    {
-        if (!string.IsNullOrEmpty(AUnlocker.AccountLevel.Value) && uint.TryParse(AUnlocker.AccountLevel.Value, out parsedLevel))
-        {
-            DataManager.Player.stats.level = parsedLevel - 1;
-            DataManager.Player.Save();
-        }
-    }
-}
