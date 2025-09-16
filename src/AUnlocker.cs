@@ -22,6 +22,7 @@ public partial class AUnlocker : BasePlugin
     public static ConfigEntry<bool> UnlockGuest;
     public static ConfigEntry<bool> UnlockMinor;
     public static ConfigEntry<bool> RemovePenalty;
+    public static ConfigEntry<int> AccountLevel;
 
     // Chat
     public static ConfigEntry<bool> PatchChat;
@@ -57,6 +58,7 @@ public partial class AUnlocker : BasePlugin
         UnlockGuest = Config.Bind("Account", "RemoveGuestStatus", false, "Remove guest restrictions (no custom name, no free chat, no friend list)");
         UnlockMinor = Config.Bind("Account", "RemoveMinorStatus", false, "Remove minor status and restrictions (no online play)");
         RemovePenalty = Config.Bind("Account", "NoDisconnectPenalty", true, "Remove the penalty after disconnecting from too many lobbies");
+        AccountLevel = Config.Bind("Account", "Level", 100, "Set the account's level to this value");
         // Chat
         PatchChat = Config.Bind("Chat", "Enabled", true, "Allow Ctrl+C and Ctrl+V (copy-pasting)\nBe able to send URLs and Email addresses\nIncrease the character limit from 100 to 120");
         ChatHistoryLimit = Config.Bind("Chat", "ChatHistoryLimit", 20, "The maximum amount of chat messages to keep in the chat history");
