@@ -162,3 +162,15 @@ public static class ShowTaskPanelInMeetings_HudManager_SetHudActive
         __instance.TaskPanel.gameObject.SetActive(true);
     }
 }
+
+[HarmonyPatch(typeof(ControllerManager), nameof(ControllerManager.Update))]
+public static class StartCountdownTimer_ControllerManager_Update_Postfix
+{
+    /// <summary>
+    /// Set the target start countdown timer based on the config setting.
+    /// </summary>
+    public static void Postfix()
+    {
+        GameStartManager.Instance.countDownTimer = AUnlocker.StartCountdownTimer.Value;
+    }
+}
