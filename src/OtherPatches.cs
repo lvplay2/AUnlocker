@@ -166,6 +166,7 @@ public static class ShowTaskPanelInMeetings_HudManager_SetHudActive
 [HarmonyPatch(typeof(ControllerManager), nameof(ControllerManager.Update))]
 public static class StartCountdownTimer_ControllerManager_Update_Postfix
 {
+    private static bool hasExecuted = false;
     public static bool IsCountDown => GameStartManager.Instance != null && GameStartManager.Instance.startState == (GameStartManager.StartingStates)1;
     
     /// <summary>
@@ -175,7 +176,15 @@ public static class StartCountdownTimer_ControllerManager_Update_Postfix
     {
         if (IsCountDown)
         {
-            GameStartManager.Instance.countDownTimer = AUnlocker.StartCountdownTimer.Value;
+            if (!hasExecuted)
+            {
+                GameStartManager.Instance.countDownTimer = AUnlocker.StartCountdownTimer.Value;
+                hasExecuted = true;
+            }
+        }
+        else
+        {
+            hasExecuted = false;
         }
     }
 }
