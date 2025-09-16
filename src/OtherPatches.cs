@@ -171,7 +171,7 @@ public static class StartCountdownTimer_GameStartManager_ReallyBegin_Postfix
     /// </summary>
     public static void Postfix(GameStartManager __instance, bool neverShow)
     {
-        if (InnerNetClient.Instance.AmHost)
+        if (AmongUsClient.Instance && AmongUsClient.Instance.AmHost)
         {
             __instance.countDownTimer = AUnlocker.StartCountdownTimer.Value + 0.0001f;
         }
